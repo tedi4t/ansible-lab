@@ -28,9 +28,11 @@ http {
     gzip on;
 
     server {
-        {#
-            TODO: Nginx server config using proxy_pass and {{ app_port }}
-        #}
-        # TODO: Your code here
+      listen 80
+      server_name localhost
+
+        location / {
+          proxy_pass http://localhost:{{ app_port }};
+        }
     }
 }

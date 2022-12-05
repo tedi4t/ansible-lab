@@ -4,12 +4,16 @@ TODO: Path to jar should use variables {{ app_dir }}/{{ app_file }}
 TODO: Environment variable for PORT should use value from variable {{ app_port }}
 #}
 [Unit]
-Description=
-Requires=
-After=
+Description=Uryn Dmytro Lab 3
+Requires=network-online.target local-fs.target
+After=network-online.target local-fs.target
 
 [Install]
 WantedBy=multi-user.target
 
 [Service]
-ExecStart=
+ExecStart=java -jar {{ app_dir }}/{{ app_file }}
+User=dmytro
+Environment=PORT={{ app_port }}
+Restart=always
+RestartSec=20
